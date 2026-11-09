@@ -1,50 +1,56 @@
-// =====================================================================
-// SIPERPUS - Penyimpanan Data Input (sesuai poin 4b rancangan)
-// Konsep : variabel, array, vector
-// =====================================================================
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
+struct Buku {
+    string kodeBuku;
+    string judul;
+    string penulis;
+    int tahunTerbit;
+    int stok;
+};
+
+struct Peminjaman {
+    string nim;
+    string kodeBuku;
+    string tglPinjam;
+    string tglKembali;
+    bool statusPinjam; 
+};
+
 int main() {
+    const int MAX_BUKU = 10;
+    const int MAX_PINJAM = 5;
+    Buku daftarBuku[MAX_BUKU] = {
+        {"B001", "Pemrograman C++ Dasar", "Budi Raharjo", 2020, 3},
+        {"B002", "Struktur Data & Algoritma dalam Phyton", "Heru Saputra,dkk", 2026, 3},
+        {"B003", "Perempuan-Perempuan Perkasa", "Peter Carey", 2023, 3},
+        {"B004", "Negeri Para Bedebah", "Tere Liye", 2023, 3},
+        {"B005", "Sukses Bisnis Online", "Geoffrey Mahendra", 2026, 3},
+        {"B006", "Rekayasa Perangkat Lunak", "Roger S. Pressman", 2023, 3},
+        {"B007", "Manajemen Farmasi", "Anggraeni Widya Putri, S.Farm.", 2025, 3},
+        {"B008", "Matematika Diskrit", "Rinaldi Munir", 2016, 3},
+        {"B009", "Antologi Rasa", "Ika Natassa", 2019, 3},
+        {"B010", "Pengantar Teknologi Informasi", "Asrul,dkk", 2025, 3}
+    };
+    
+    Peminjaman daftarPeminjaman[MAX_PINJAM] = {
+        {"220101001", "B001", "01-11-2026", "08-11-2026", true}
+    };
 
-    // 1) Pin admin
-    int pinAdmin = 123456;
+    cout << "=========================================================" << endl;
+    cout << "              DAFTAR BUKU PERPUSTAKAAN                   " << endl;
+    cout << "=========================================================" << endl;
 
-    // 2) Tempat penyimpanan data peminjaman
-    //    Satu baris = satu transaksi, dengan urutan kolom:
-    //    [0] NIM mahasiswa
-    //    [1] Kode buku
-    //    [2] Judul buku
-    //    [3] Penulis buku
-    //    [4] Tahun terbit
-    //    [5] Tanggal peminjaman
-    //    [6] Tanggal pengembalian ("-" jika belum dikembalikan)
-    vector< vector<string> > dataPeminjaman;
-
-    // 3) Data dump untuk pengujian
-    dataPeminjaman.push_back({"2604130109", "B001", "Dasar Pemrograman C++",       "Andi Pratama",   "2019", "01-11-2026", "-"});
-    dataPeminjaman.push_back({"2604130155", "B002", "Struktur Data dan Algoritma", "Budi Santoso",   "2018", "02-11-2026", "-"});
-    dataPeminjaman.push_back({"2604130103", "B003", "Matematika Diskrit",          "Citra Lestari",  "2017", "20-10-2026", "-"});
-    dataPeminjaman.push_back({"2604130176", "B004", "Basis Data untuk Pemula",     "Dewi Anggraini", "2020", "10-10-2026", "15-10-2026"});
-    dataPeminjaman.push_back({"2604130109", "B005", "Jaringan Komputer",          "Eko Nugroho",    "2016", "01-10-2026", "12-10-2026"});
-
-    // ---------------------------------------------------------------
-    // Pengujian singkat: tampilkan isi penyimpanan
-    // ---------------------------------------------------------------
-    cout << "Pin admin : " << pinAdmin << endl;
-    cout << "Jumlah data peminjaman : " << dataPeminjaman.size() << endl << endl;
-
-    for (int i = 0; i < dataPeminjaman.size(); i++) {
-        cout << i + 1 << ". NIM: " << dataPeminjaman[i][0]
-             << " | Kode: "    << dataPeminjaman[i][1]
-             << " | Judul: "   << dataPeminjaman[i][2]
-             << " | Penulis: " << dataPeminjaman[i][3]
-             << " | Tahun: "   << dataPeminjaman[i][4]
-             << " | Pinjam: "  << dataPeminjaman[i][5]
-             << " | Kembali: " << dataPeminjaman[i][6] << endl;
+    for (int i = 0; i < MAX_BUKU; i++) {
+        cout << i + 1 << ". Kode: " << daftarBuku[i].kodeBuku 
+             << " | Judul: " << daftarBuku[i].judul 
+             << " | Penulis: " << daftarBuku[i].penulis 
+             << " | Tahun: " << daftarBuku[i].tahunTerbit 
+             << " | Stok: " << daftarBuku[i].stok << endl;
     }
+
+    cout << "=========================================================" << endl;
 
     return 0;
 }
