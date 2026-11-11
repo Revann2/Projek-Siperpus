@@ -327,7 +327,7 @@ void pilihRole(int &role) {
     cout << "=================================" << endl;
     cout << "   Selamat Datang di SiPerpus" << endl;
     cout << "=================================" << endl;
-    cout << "[1] Admin\n[2] Pengunjung" << endl;
+    cout << "[1] Admin\n[2] Pengunjung\n[0] Keluar" << endl;
     cout << "Silahkan login sebagai Admin atau Pengunjung: ";
     cin >> role;
     cin.ignore();
@@ -349,6 +349,7 @@ void loginAdmin(bool &berhasil) {
         berhasil = true;
     } else {
         cout << "PIN Salah! Akses Ditolak." << endl;
+        loginAdmin(berhasil);
     }
 }
 void menuAdmin(){
@@ -459,6 +460,9 @@ int main() {
             break;
         case 2:
             pengunjung();
+            break;
+        case 0:
+            selesai = true;
             break;
         default:
             cout << "Pilihan tidak valid." << endl;
